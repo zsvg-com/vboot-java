@@ -1,0 +1,5 @@
+# 项目排除路径
+/vboot-application/target/
+/vboot-core/target/
+/vboot-extend-bi/target/
+/vboot-extend-wf/target/
