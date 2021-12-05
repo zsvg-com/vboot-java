@@ -22,8 +22,7 @@ import java.net.UnknownHostException;
 @EnableJpaRepositories({"com.zsvg","com.abc"})
 @Slf4j
 //@EnableSwagger2
-//@EnableRedisHttpSession(maxInactiveIntervalInSeconds=60)
-public class Application {// extends SpringBootServletInitializer {
+public class Application {
 
     public static void main(String[] args) {
 

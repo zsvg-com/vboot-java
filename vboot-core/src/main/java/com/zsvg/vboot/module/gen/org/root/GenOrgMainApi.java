@@ -18,8 +18,8 @@ import java.util.Map;
 public class GenOrgMainApi {
 
     //根据部门ID，查询下级所有的部门,岗位,用户
-    @GetMapping("list")
-    public RestResult list(String deptid, Integer type, String name) {
+    @GetMapping()
+    public RestResult get(String deptid, Integer type, String name) {
         List<Map<String, Object>> mapList = new ArrayList<>();
         if(XstringUtil.isBlank(name)&&XstringUtil.isBlank(deptid)){
             return RestResult.ok(mapList);

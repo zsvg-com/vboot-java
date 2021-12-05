@@ -24,7 +24,6 @@ public class GenOrgReceApi {
             userSqler.addInnerJoin("u.name", "sys_org_user u", "u.id=t.orgid");
             userSqler.addInnerJoin("d.name as dept", "sys_org_dept d", "d.id=u.deptid");
             userSqler.addEqual("t.userid", userId);
-            System.out.println(userSqler.getSql());
             mapList.addAll(jdbcDao.findMapList(userSqler));
         }
         if ((type & 2) != 0) {//部门

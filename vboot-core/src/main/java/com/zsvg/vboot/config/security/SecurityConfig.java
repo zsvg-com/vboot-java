@@ -97,7 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //配置security忽略的请求与资源
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/**","/assets/**","/druid/**","/login", "/pub/**","/index.html","/vben.html","/favicon.ico","/resource/**","/_app.config.js");
+        web.ignoring().antMatchers("/assets/**","/druid/**","/login", "/pub/**","/index.html","/vben.html","/favicon.ico","/resource/**","/_app.config.js");
     }
 
 //    @Override
