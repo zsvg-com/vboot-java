@@ -25,21 +25,22 @@ public class SysJobMainService {
         for (int j = 0; j < dbJobList.size(); j++) {
             boolean flag = false;
             for (int i = 0; i < scanJobList.size(); i++) {
-                if(dbJobList.get(j).getId().equals(scanJobList.get(i).getId())){
+                if(dbJobList.get(j).getReurl().equals(scanJobList.get(i).getReurl())){
                     flag=true;
                 }
             }
-            if(!flag) {
-                repo.deleteById(dbJobList.get(j).getId());//删除已移除的JOB
-            }
+//            if(!flag) {
+//                repo.deleteById(dbJobList.get(j).getCode());//删除已移除的JOB
+//            }
         }
 
         for (int i = 0; i < scanJobList.size(); i++) {
             boolean flag = false;
             for (int j = 0; j < dbJobList.size(); j++) {
-                if(dbJobList.get(j).getId().equals(scanJobList.get(i).getId())){
+                if(dbJobList.get(j).getReurl().equals(scanJobList.get(i).getReurl())){
                     scanJobList.get(i).setCron(dbJobList.get(j).getCron());
-                    scanJobList.get(i).setState(dbJobList.get(j).getState());
+                    scanJobList.get(i).setAvtag(dbJobList.get(j).getAvtag());
+                    scanJobList.get(i).setCode(dbJobList.get(j).getCode());
                     flag=true;
                 }
             }
@@ -66,19 +67,22 @@ public class SysJobMainService {
                     if (xjob != null)
                     {
                         SysJobMain job = new SysJobMain();
+                        job.setId(XstringUtil.getUUID());
                         job.setCron(xjob.cron());
                         job.setJgroup(XstringUtil.toLowerfirst(clazz.getSimpleName()));
                         job.setName(xjob.name());
                         job.setJid(method.getName());
-                        job.setState("是");
-                        if(XstringUtil.isBlank(xjob.key())){
-                            job.setId(job.getJgroup()+":"+method.getName());
+                        job.setReurl(job.getJgroup()+"/"+job.getJid());
+                        job.setAvtag(false);
+                        job.setRetyp(0);
+                        if(XstringUtil.isBlank(xjob.code())){
+                            job.setCode(job.getReurl());
                         }else{
-                            job.setId(xjob.key());
+                            job.setCode(xjob.code());
                         }
                         boolean flag=false;
                         for (int i = 0; i < list.size(); i++) {
-                            if(list.get(i).getId().equals(job.getId())){
+                            if(list.get(i).getCode().equals(job.getCode())){
                                 flag=true;
                                 log.warn("存在相同key的job，已屏蔽");
                                 break;

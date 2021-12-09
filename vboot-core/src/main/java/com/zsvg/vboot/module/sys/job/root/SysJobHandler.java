@@ -20,7 +20,10 @@ public class SysJobHandler {
     //开始执行所有任务
     public void startAllJobs(List<SysJobMain> jobList) throws SchedulerException {
         for (int i = 0; i < jobList.size(); i++) {
-            if ("是".equals(jobList.get(i).getState())) {
+            if (jobList.get(i).getAvtag()) {
+                String[] arr= jobList.get(i).getReurl().split("/");
+                jobList.get(i).setJgroup(arr[0]);
+                jobList.get(i).setJid(arr[1]);
                 initJob(scheduler, jobList.get(i));
             }
         }
@@ -45,7 +48,7 @@ public class SysJobHandler {
     public void stopJob(SysJobMain job) throws SchedulerException {
         JobKey jobKey = JobKey.jobKey(job.getJid(), job.getJgroup());
         scheduler.deleteJob(jobKey);
-        job.setState("否");
+        job.setAvtag(false);
         repo.save(job);
     }
 
@@ -66,13 +69,13 @@ public class SysJobHandler {
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
             scheduler.rescheduleJob(triggerKey, trigger);
         }
-        job.setState("是");
+        job.setAvtag(true);
         repo.save(job);
     }
 
     //立即执行一次
     public void onceJob(SysJobMain job) throws SchedulerException, InterruptedException {
-        if ("是".equals(job.getState())) {
+        if (job.getAvtag()) {
             JobKey jobKey = JobKey.jobKey(job.getJid(), job.getJgroup());
             scheduler.triggerJob(jobKey);
         } else {

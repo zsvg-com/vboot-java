@@ -243,43 +243,6 @@ public class AssFileAttHandler {
         bos.close();
     }
 
-    public void downloadWithWatermark(HttpServletRequest request,
-                                      HttpServletResponse response, AssFileAtt att, String userInfo) throws Exception
-    {
-
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String realName = att.getPname()+"."+att.getSname();
-        String storeName = att.getAddress() + "/" + att.getId() + realName.substring(realName.lastIndexOf("."));
-        String downLoadPath = ATT_PATH + "/" + storeName;
-        String dirM = XdateUtil.getMM();
-        String path2="D:/zsvg/temp/"+dirM+"/"+XstringUtil.getUUID()+".pdf";
-        XpdfUtil.setWatermark(new BufferedOutputStream(new FileOutputStream(new File(path2))),new FileInputStream(downLoadPath), userInfo, 1);
-
-        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path2));
-
-        long fileLength = new File(path2).length();
-        response.setContentType("application/octet-stream");
-        realName = URLEncoder.encode(realName, "UTF-8");
-        Locale localLanguage = request.getLocale();
-        if (realName.length() > 150)
-        {
-            realName = new String(realName.getBytes("gb2312"), "ISO8859-1");
-        }
-        response.setHeader("Content-disposition", "attachment; filename=" + realName);
-        response.setHeader("Content-Length", String.valueOf(fileLength));
-        BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-        byte[] buff = new byte[2048];
-        int bytesRead;
-        while (-1 != (bytesRead = bis.read(buff, 0, buff.length)))
-        {
-            bos.write(buff, 0, bytesRead);
-        }
-        bis.close();
-        bos.close();
-    }
-
-
     private  void byte2File(byte[] buf, String filePath, String fileName){
         BufferedOutputStream bos = null;
         FileOutputStream fos = null;

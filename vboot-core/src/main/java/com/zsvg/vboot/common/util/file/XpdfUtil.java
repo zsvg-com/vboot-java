@@ -12,10 +12,6 @@ import com.itextpdf.text.pdf.PdfStamper;
 import java.io.*;
 
 public class XpdfUtil {
-//    public static void main(String[] args) throws IOException {
-//        setWatermark(new BufferedOutputStream(new FileOutputStream(new File("D:\\bb.pdf"))),
-//                new FileInputStream("D:\\aa.pdf"), "借阅借阅水印借阅水印借阅水印水印", 1);
-//    }
 
 
     /**

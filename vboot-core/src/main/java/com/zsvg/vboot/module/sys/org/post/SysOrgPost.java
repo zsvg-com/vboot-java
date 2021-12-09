@@ -44,8 +44,8 @@ public class SysOrgPost{
     private String ldnam;//ldap 层级名称
 
     @ManyToMany
-    @JoinTable(name = "sys_org_post_user", joinColumns = {@JoinColumn(name = "pid")},
-            inverseJoinColumns = {@JoinColumn(name = "uid")})
+    @JoinTable(name = "sys_org_post_org", joinColumns = {@JoinColumn(name = "pid")},
+            inverseJoinColumns = {@JoinColumn(name = "oid")})
     private List<SysOrg> users;//员工列表
 
 

@@ -49,8 +49,6 @@ public class GenImgApi {
             size=900;
         }
         InputStream inputStream= XqcodeUtil.createQrCode(label, size, "JPEG");
-//        File file = new File("D:/qrcode.jpg");
-//        FileInputStream inputStream = new FileInputStream(file);
         byte[] bytes = new byte[inputStream.available()];
         inputStream.read(bytes, 0, inputStream.available());
         return bytes;

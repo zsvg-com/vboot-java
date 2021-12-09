@@ -340,6 +340,7 @@ public class Sqler
         return selectClause + fromClause + whereClause+groupClause + orderClause + " limit " + fromIndex + "," + pasiz;
     }
 
+
     public String getOraclePagingSql()
     {
         int rownum = panum * pasiz;
@@ -365,9 +366,24 @@ public class Sqler
         for (String aStrArr : strArr) {
             if(aStrArr.contains("(")&&!aStrArr.contains(")")){
                 changeSelectClause.append(" ").append(aStrArr);
+            }else if(aStrArr.contains("SELECT")){
+                String[] firstArr = aStrArr.split(" ");
+                if(firstArr.length>=3){
+                    firstArr[firstArr.length - 1] = "\"" + firstArr[firstArr.length - 1] + "\"";
+                }else{
+                    firstArr[1]=firstArr[1]+" \"" + firstArr[1].substring(firstArr[1].lastIndexOf(".")+1) + "\"";
+                }
+                for (String afirstArr : firstArr) {
+                    changeSelectClause.append(" ").append(afirstArr);
+                }
             }else{
+
                 String[] strArr2 = aStrArr.split(" ");
-                strArr2[strArr2.length - 1] = "\"" + strArr2[strArr2.length - 1] + "\"";
+                if(strArr2.length>=2){
+                    strArr2[strArr2.length - 1] = "\"" + strArr2[strArr2.length - 1] + "\"";
+                }else{
+                    strArr2[0]=strArr2[0]+" \"" + strArr2[0].substring(strArr2[0].lastIndexOf(".")+1) + "\"";
+                }
                 for (String aStrArr2 : strArr2) {
                     changeSelectClause.append(" ").append(aStrArr2);
                 }
@@ -375,6 +391,43 @@ public class Sqler
             changeSelectClause.append(",");
         }
     }
+
+
+//    public String getOraclePagingSql()
+//    {
+//        int rownum = panum * pasiz;
+//        int rn = (panum - 1) * pasiz;
+//        return " SELECT * FROM (SELECT PPGG.*, ROWNUM RN FROM (" + selectClause + fromClause + whereClause+groupClause + orderClause + ") PPGG  WHERE ROWNUM <= " + rownum + ")  WHERE RN > " + rn;
+////        return " SELECT * FROM (SELECT PPGG.*, ROWNUM RN FROM (" + changeSelectClause.toString() + fromClause + whereClause+groupClause + orderClause + ") PPGG  WHERE ROWNUM <= " + rownum + ")  WHERE RN > " + rn;
+//    }
+//
+//    public String getOraclePagingLowerCaseSql()
+//    {
+//        //字段转成小写
+//        StringBuilder changeSelectClause= new StringBuilder();
+//        String[] strArr= selectClause.split(",");
+//        lowerCaseSelect(changeSelectClause, strArr);
+//        changeSelectClause.deleteCharAt(changeSelectClause.length()-1);
+//        //分页
+//        int rownum = panum * pasiz;
+//        int rn = (panum - 1) * pasiz;
+//        return " SELECT * FROM (SELECT PPGG.*, ROWNUM RN FROM (" + changeSelectClause.toString() + fromClause + whereClause+groupClause + orderClause + ") PPGG  WHERE ROWNUM <= " + rownum + ")  WHERE RN > " + rn;
+//    }
+//
+//    private void lowerCaseSelect(StringBuilder changeSelectClause, String[] strArr) {
+//        for (String aStrArr : strArr) {
+//            if(aStrArr.contains("(")&&!aStrArr.contains(")")){
+//                changeSelectClause.append(" ").append(aStrArr);
+//            }else{
+//                String[] strArr2 = aStrArr.split(" ");
+//                strArr2[strArr2.length - 1] = "\"" + strArr2[strArr2.length - 1] + "\"";
+//                for (String aStrArr2 : strArr2) {
+//                    changeSelectClause.append(" ").append(aStrArr2);
+//                }
+//            }
+//            changeSelectClause.append(",");
+//        }
+//    }
 
     public Object[] getParams()
     {

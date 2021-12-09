@@ -34,7 +34,7 @@ public class GenOrgReceService {
             if ("MYSQL".equals(jdbcDao.getDbType())) {
                 list = jdbcDao.getTp().query(sqler.getMysqlPagingSql(), sqler.getParams(), new BeanPropertyRowMapper<>(GenOrgRece.class));
             } else {
-                list = jdbcDao.getTp().query(sqler.getOraclePagingSql(), sqler.getParams(), new BeanPropertyRowMapper<>(GenOrgRece.class));
+                list = jdbcDao.getTp().query(sqler.getOraclePagingLowerCaseSql(), sqler.getParams(), new BeanPropertyRowMapper<>(GenOrgRece.class));
             }
             //去重
             for (GenOrgRece dbRece : list) {

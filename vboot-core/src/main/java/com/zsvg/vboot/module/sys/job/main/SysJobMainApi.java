@@ -16,50 +16,73 @@ public class SysJobMainApi {
 
     @GetMapping
     public RestResult get(String id, String name) {
-        Sqler sqler = new Sqler("t.id,t.name,t.jid,t.jgroup,t.cron,t.state", table);
+        Sqler sqler = new Sqler("t.id,t.name,t.reurl,t.cron,t.avtag,t.code,t.crtim,t.notes", table);
         sqler.addLike("t.name", name);
         return RestResult.ok(jdbcDao.findPageData(sqler));
     }
 
-    @GetMapping("start/{ids}")
+    @GetMapping("one/{id}")
+    public RestResult getOne(@PathVariable String id) {
+        SysJobMain main=repo.findById(id).get();
+        return RestResult.ok(main);
+    }
+
+    @PutMapping
+    public RestResult put(@RequestBody SysJobMain main) throws SchedulerException {
+        SysJobMain dbJob = repo.findById(main.getId()).get();
+        if(dbJob.getAvtag()){
+            String[] arr= dbJob.getReurl().split("/");
+            dbJob.setJgroup(arr[0]);
+            dbJob.setJid(arr[1]);
+            handler.stopJob(dbJob);
+        }
+        repo.save(main);
+        if(main.getAvtag()){
+            String[] arr2= main.getReurl().split("/");
+            main.setJgroup(arr2[0]);
+            main.setJid(arr2[1]);
+            handler.startJob(main);
+        }
+        return RestResult.ok();
+    }
+
+
+    @PostMapping("start/{ids}")
     public RestResult startJob(@PathVariable String[] ids) throws SchedulerException {
         for (int i = 0; i < ids.length; i++) {
             SysJobMain job = repo.findById(ids[i]).get();
+            String[] arr= job.getReurl().split("/");
+            job.setJgroup(arr[0]);
+            job.setJid(arr[1]);
             handler.startJob(job);
         }
         return RestResult.ok();
     }
 
-    @GetMapping("stop/{ids}")
-    public RestResult list_stop(@PathVariable String[] ids) throws SchedulerException {
+    @PostMapping("stop/{ids}")
+    public RestResult stopJob(@PathVariable String[] ids) throws SchedulerException {
         for (int i = 0; i < ids.length; i++) {
             SysJobMain job = repo.findById(ids[i]).get();
+            String[] arr= job.getReurl().split("/");
+            job.setJgroup(arr[0]);
+            job.setJid(arr[1]);
             handler.stopJob(job);
         }
         return RestResult.ok();
     }
 
-    @GetMapping("one/{id}")
-    public RestResult get(@PathVariable String id) {
-        SysJobMain main=repo.findById(id).get();
-        return RestResult.ok(main);
-    }
 
-    @GetMapping("once/{id}")
-    public RestResult edit_startOnce(@PathVariable String id) throws InterruptedException, SchedulerException {
+    @PostMapping("once/{id}")
+    public RestResult startOnce(@PathVariable String id) throws InterruptedException, SchedulerException {
         SysJobMain main=repo.findById(id).get();
+        String[] arr= main.getReurl().split("/");
+        main.setJgroup(arr[0]);
+        main.setJid(arr[1]);
         handler.onceJob(main);
         return RestResult.ok();
     }
 
-    @PutMapping
-    public RestResult update(@RequestBody SysJobMain main) {
-        SysJobMain sysJobMain = repo.findById(main.getId()).get();
-        sysJobMain.setCron(main.getCron());
-        repo.save(sysJobMain);
-        return RestResult.ok();
 
-    }
     @Autowired
     private SysJobHandler handler;
 

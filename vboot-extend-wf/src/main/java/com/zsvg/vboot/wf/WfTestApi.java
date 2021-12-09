@@ -11,7 +11,7 @@ public class WfTestApi {
 
     @GetMapping("test")
     public RestResult get() {
-        return RestResult.ok("这里可以放扩展模块2");
+        return RestResult.ok("这里可以放扩展模块");
     }
 
 }

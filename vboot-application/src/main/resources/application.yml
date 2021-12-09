@@ -41,11 +41,11 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-    #    driver-class-name: com.mysql.jdbc.Driver
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/vboot-java?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
-    username: root
-    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/vboot-java?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
+#    url: jdbc:mysql://127.0.0.1:3306/vboot-java?characterEncoding=utf-8&useSSL=false
+#    username: root
+#    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
@@ -56,17 +56,8 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-ldap:
-  url:
-  base:
-  userDn:
-  userPwd:
-  referral:
-  domainName:
-
 
 logging.config: classpath:config/logback.xml
-
 
 zsvg:
   jwt:

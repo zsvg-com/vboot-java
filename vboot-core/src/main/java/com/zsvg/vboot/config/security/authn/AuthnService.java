@@ -157,7 +157,7 @@ public class AuthnService {
 
 
     private List<String> findPostList(String uid) {
-        String sql = "select pid as id from sys_org_post_user where uid=?";
+        String sql = "select pid as id from sys_org_post_org where oid=?";
         return jdbcDao.findStringList(sql, uid);
     }
 

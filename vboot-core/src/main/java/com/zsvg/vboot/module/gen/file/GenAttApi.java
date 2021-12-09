@@ -16,6 +16,7 @@ public class GenAttApi {
 
     @PostMapping(value="up",produces = "text/html;charset=UTF-8")
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        System.out.println("上传xxxxxx");
         AssFileAtt att = handler.saveFile(file);
         repo.save(att);
         return "{\"id\":\"" + att.getId() + "\",\"address\":\"" + att.getAddress() + "\",\"pname\":\"" + att.getPname() + "\",\"sname\":\"" + att.getSname() + "\",\"zsize\":\"" + att.getZsize() + "\",\"zimg\":\"" + att.getZimg() + "\"}";

@@ -33,8 +33,11 @@ public class JdbcDao {
         List<Map<String, Object>> list;
         if ("MYSQL".equals(DB_TYPE)) {
             list = jdbcTemplate.queryForList(sqler.getMysqlPagingSql(), sqler.getParams());
-        } else {
-            list = jdbcTemplate.queryForList(sqler.getOraclePagingSql(), sqler.getParams());
+        }else if ("ORACLE".equals(DB_TYPE)) {
+            list = jdbcTemplate.queryForList(sqler.getOraclePagingLowerCaseSql(), sqler.getParams());
+        }  else {
+            System.err.println("目前只支持mysql与oracle");
+            list = new ArrayList<>();
         }
         return new PageData(count, list);
     }

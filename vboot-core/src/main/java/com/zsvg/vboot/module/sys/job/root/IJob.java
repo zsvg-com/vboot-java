@@ -14,5 +14,5 @@ public @interface IJob
 
     String name() default "";
 
-    String key() default "";
+    String code() default "";
 }

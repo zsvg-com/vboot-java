@@ -14,7 +14,7 @@ public class SdProjMainApi {
     public RestResult get(String name) {
         Sqler sqler = new Sqler("sd_proj_main");
         sqler.addLike("t.name", name);
-        sqler.addSelect("t.addre,t.crtim,t.notes");
+        sqler.addSelect("t.addre,t.notes");
         return RestResult.ok(service.findPageData(sqler));
     }
 

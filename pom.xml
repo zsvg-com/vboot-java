@@ -7,7 +7,7 @@
     <groupId>com.zsvg</groupId>
     <artifactId>vboot</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2</version>
     <modules>
         <module>vboot-core</module>
         <module>vboot-application</module>
@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <vboot.version>0.1</vboot.version>
+        <vboot.version>0.2</vboot.version>
         <spring.boot.version>2.2.13.RELEASE</spring.boot.version>
     </properties>
 
