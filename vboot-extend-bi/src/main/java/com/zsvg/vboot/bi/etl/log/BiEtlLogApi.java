@@ -14,7 +14,8 @@ public class BiEtlLogApi {
 
     @GetMapping
     public RestResult list(Integer panum, Integer pasiz, String name, String id) {
-        Sqler sqler = new Sqler("t.ID_BATCH as id,t.TRANSNAME as name,t.STARTDATE as sdate,t.ENDDATE as edate,t.STATUS as status,t.LOGDATE as ldate,t.DEPDATE as ddate,t.REPLAYDATE as rdate",
+        Sqler sqler = new Sqler("t.ID_BATCH as id,t.TRANSNAME as name,t.STARTDATE as sttim,t.ENDDATE as entim," +
+                "t.STATUS as state,t.LOGDATE as lotim,t.DEPDATE as detim,t.REPLAYDATE as retim",
                 table,panum,pasiz);
         sqler.addLike("t.TRANSNAME", name);
         sqler.addEqual("t.ID_BATCH", id);
@@ -24,7 +25,8 @@ public class BiEtlLogApi {
 
     @GetMapping("one/{id}")
     public RestResult get(@PathVariable String id) {
-        String sql = "select t.ID_BATCH as id,t.* from "+table+" t where t.ID_BATCH=?";
+        String sql = "select t.ID_BATCH as id,t.STARTDATE sttim,t.ENDDATE entim,t.LOGDATE lotim,t.log_field msg,t.status state," +
+                "t.transname name from "+table+" t where t.ID_BATCH=?";
         return RestResult.ok(jdbcDao.findMap(sql, id));
     }
 

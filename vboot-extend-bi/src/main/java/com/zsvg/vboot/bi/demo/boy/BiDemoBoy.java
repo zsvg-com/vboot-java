@@ -11,5 +11,5 @@ import javax.persistence.Entity;
 @Setter
 public class BiDemoBoy extends BaseEntity
 {
-
+    private String notes;
 }

@@ -18,7 +18,7 @@ public class BiEtlMainService extends BaseMainService<BiEtlMain> {
     @Value("${app.att.path}")
     private String ATT_PATH;
 
-    public void zrunWithNum(String kettleId,String num) throws Exception
+    public void runByNum(String kettleId,String num) throws Exception
     {
         BiEtlMain kettle=repo.findById(kettleId).get();
         try
@@ -32,14 +32,9 @@ public class BiEtlMainService extends BaseMainService<BiEtlMain> {
         }
     }
 
-    public long zrunById(String id, Map<String,String> map) throws Exception {
+    public long runById(String id, Map<String,String> map) throws Exception {
         BiEtlMain main=repo.findById(id).get();
        return KetUtil.runTran(ATT_PATH+"/"+main.getZpath(),map,false);
-    }
-
-    public long zrunByLabel(String code, Map<String,String> map,boolean waitFlag) throws Exception {
-        BiEtlMain main=repo.findByCode(code);
-        return KetUtil.runTran(ATT_PATH+"/"+main.getZpath(),map,waitFlag);
     }
 
 

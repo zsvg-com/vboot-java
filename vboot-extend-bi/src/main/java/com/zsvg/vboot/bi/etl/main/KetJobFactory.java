@@ -12,7 +12,7 @@ public class KetJobFactory implements Job {
           String kettleId = (String) context.getMergedJobDataMap().get("etl");
         try {
             BiEtlMainService service= XspringUtil.getBean(BiEtlMainService.class);
-            service.zrunById(kettleId,null);
+            service.runById(kettleId,null);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,8 +2,12 @@ package com.zsvg.vboot.bi.demo.boy;
 
 import com.zsvg.vboot.common.mvc.api.RestResult;
 import com.zsvg.vboot.common.mvc.dao.Sqler;
+import com.zsvg.vboot.common.util.lang.XstringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -14,6 +18,14 @@ public class BiDemoBoyApi {
 
     @GetMapping
     public RestResult get(String name) {
+        List<BiDemoBoy> boys = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            BiDemoBoy boy=new BiDemoBoy();
+            boy.setId(XstringUtil.getUUID());
+            boy.setName(XstringUtil.getRSID8());
+            boys.add(boy);
+        }
+        repo.saveAll(boys);
         Sqler sqler = new Sqler(table);
         sqler.addLike("t.name", name);
         return RestResult.ok(service.findPageData(sqler));
@@ -42,5 +54,8 @@ public class BiDemoBoyApi {
 
     @Autowired
     private BiDemoBoyService service;
+
+    @Autowired
+    private BiDemoBoyRepo repo;
 
 }
