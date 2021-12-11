@@ -80,7 +80,7 @@ public class AuthnService {
             backMap.put("menus", menuList);
             backMap.put("btns", btnArr);
             backMap.put("zuser", zuser);
-            System.out.println("通过缓存");
+//            System.out.println("通过缓存");
         }
 
 //            //初始化数据库user

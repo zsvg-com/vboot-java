@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -21,6 +22,7 @@ import java.net.UnknownHostException;
 @ComponentScan({"com.zsvg","com.abc"})
 @EnableJpaRepositories({"com.zsvg","com.abc"})
 @Slf4j
+@EnableAsync
 //@EnableSwagger2
 public class Application {
 

@@ -12,11 +12,15 @@ public class SysLogLoginApi {
 
     @GetMapping
     public RestResult get(String name) {
-        Sqler sqlHelper = new Sqler("t.id,t.uname,t.crtim,t.uip,t.agent_os as agentOs,t.agent_browser as agentBrowser,t.agent_info as agentInfo",
-                "sys_log_login");
+        Sqler sqlHelper = new Sqler("t.*", "sys_log_login");
         sqlHelper.addLike("t.uname", name);
         sqlHelper.addOrder("t.crtim desc");
         return RestResult.ok(jdbcDao.findPageData(sqlHelper));
+    }
+
+    @GetMapping("one/{id}")
+    public RestResult getOne(@PathVariable String id) {
+        return RestResult.ok(repo.findById(id).get());
     }
 
     @DeleteMapping("{ids}")
@@ -27,6 +31,11 @@ public class SysLogLoginApi {
         return RestResult.ok();
     }
 
+    @DeleteMapping("all")
+    public RestResult deleteAll()  {
+        repo.deleteAll();
+        return RestResult.ok();
+    }
 
     @Autowired
     private JdbcDao jdbcDao;

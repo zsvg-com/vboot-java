@@ -2,16 +2,16 @@
 <div align="center"><h3 align="center">一个开箱即用的快速开发平台.JAVA版</h3></div>
 
 ### 🍿 传送门
-vboot在线体验传送门 [http://zsvg.gitee.io/vboot](http://zsvg.gitee.io/vboot)
+* 在线体验传送门：[http://zsvg.gitee.io/vboot](http://zsvg.gitee.io/vboot)
+* QQ交流群传送门：[795417789](https://jq.qq.com/?_wv=1027&k=yoKKIlIG) 暂时就几个人哦，哈哈
 
 ### 🍟 概述
-
 * 基于JAVA实现的快速开发平台。模块化插件式开发，前后端分离，开箱即用。
 * 后台基于SpringBoot框架，数据库访问使用Jpa，自动生成数据库表结构。
 * 前端基于Vben-Admin vxe-table框架。
 * 核心模块包括：部门、用户、岗位、群组、角色、菜单、字典、日志、文件管理、定时任务等功能。
-* QQ交流群：[795417789] 暂时就几个人哦，哈哈
 * .NET6实现的同功能项目地址[https://gitee.com/zsvg/vboot-net](https://gitee.com/zsvg/vboot-net) 两个项目会同步开发
+* 前端代码项目地址：[https://gitee.com/zsvg/vboot-vben](https://gitee.com/zsvg/vboot-vben)
 ```
 如果对您有帮助，点击右上角⭐Star⭐关注 ，感谢支持开源！
 ```

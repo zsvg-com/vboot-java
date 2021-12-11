@@ -1,13 +1,15 @@
 package com.zsvg.vboot.module.sys.log.login;
 
+import cn.hutool.extra.servlet.ServletUtil;
 import com.zsvg.vboot.common.util.lang.XstringUtil;
-import com.zsvg.vboot.common.util.web.XreqUtil;
+import com.zsvg.vboot.common.util.web.XaddressUtil;
 import com.zsvg.vboot.config.security.pojo.Zuser;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class SysLogLoginService {
 
-
     @Autowired
     private SysLogLoginRepo repo;
 
+    @Async
     public void save(Zuser zuser, HttpServletRequest request){
+
         SysLogLogin logLogin = new SysLogLogin();
         logLogin.setId(XstringUtil.getUUID());
         try {
@@ -30,25 +33,28 @@ public class SysLogLoginService {
 
             OperatingSystem os = userAgent.getOperatingSystem();
             logLogin.setUsnam(zuser.getId());
-            logLogin.setUname(zuser.getName());
-            logLogin.setUip(XreqUtil.getIpAddress(request));
-//            logLogin.setUip(request.getRemoteHost());
-            logLogin.setUsession(request.getSession().getId());
+            logLogin.setName(zuser.getName());
+//            logLogin.setUip(XreqUtil.getIpAddress(request));
+            String ip=ServletUtil.getClientIP(request);
+            logLogin.setIp(ip);
+            logLogin.setAddre(XaddressUtil.getRealAddressByIP(ip));
+//            logLogin.setUsession(request.getSession().getId());
 
-            logLogin.setAgentInfo(agent);
-            logLogin.setAgentBrowser(browser.toString());
+            logLogin.setAgdet(agent);
+            logLogin.setAgbro(browser.toString());
             if("IE7".equals(browser.toString())){
                 if (agent.contains("Trident/5")) {
-                    logLogin.setAgentBrowser("IE9C");
+                    logLogin.setAgbro("IE9C");
                 }else if(agent.contains("Trident/6")){
-                    logLogin.setAgentBrowser("IE10C");
+                    logLogin.setAgbro("IE10C");
                 }else if(agent.contains("Trident/7")){
-                    logLogin.setAgentBrowser("IE11C");
+                    logLogin.setAgbro("IE11C");
                 }
             }
-            logLogin.setAgentOs(os.toString());
+            logLogin.setAgeos(os.toString());
             repo.save(logLogin);
         }catch (Exception e){
+            e.printStackTrace();
             log.error("登录日志记录异常："+logLogin);
         }
     }

@@ -4,13 +4,14 @@ import cn.hutool.core.util.IdUtil;
 import com.zsvg.vboot.common.mvc.api.RestResult;
 import com.zsvg.vboot.common.mvc.dao.JdbcDao;
 import com.zsvg.vboot.config.AppConfig;
-import com.zsvg.vboot.module.sys.org.user.SysOrgUserService;
 import com.zsvg.vboot.config.dbx.redis.RedisHandler;
 import com.zsvg.vboot.config.security.jwt.JwtHandler;
 import com.zsvg.vboot.config.security.pojo.Duser;
 import com.zsvg.vboot.config.security.pojo.Zmenu;
 import com.zsvg.vboot.config.security.pojo.Zmeta;
 import com.zsvg.vboot.config.security.pojo.Zuser;
+import com.zsvg.vboot.module.sys.log.login.SysLogLoginService;
+import com.zsvg.vboot.module.sys.org.user.SysOrgUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.io.IOException;
@@ -34,8 +36,8 @@ import java.util.Map;
 public class AuthnController {
 
     @PostMapping("/login")
-    public RestResult login(@Valid @RequestBody LoginDto loginDTO) throws IOException, ClassNotFoundException {
-        System.out.println("开始登录");
+    public RestResult login(@Valid @RequestBody LoginDto loginDTO, HttpServletRequest request) throws IOException, ClassNotFoundException {
+//        System.out.println("开始登录");
 
         //1.登录验证
         Duser duser = null;
@@ -73,7 +75,8 @@ public class AuthnController {
 
         redisHandler.set(atokenUUID, zuser, appConfig.getJwt().getAtime());//默认8小时过期
 
-        //3.登录日志记录
+        //3.异步方式记录登录日志
+//        sysLogLoginService.save(zuser,request);
         return RestResult.ok(backMap);
 
     }
@@ -144,6 +147,9 @@ public class AuthnController {
 
     @Autowired
     private JdbcDao jdbcDao;
+
+    @Autowired
+    private SysLogLoginService sysLogLoginService;
 
     @Autowired
     private SysOrgUserService userService;

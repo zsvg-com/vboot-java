@@ -11,8 +11,13 @@ public class AuthzHandler {
 
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         String uri=request.getRequestURI();
-        Zuser zuser = (Zuser) authentication.getPrincipal();
 
+        try {
+            Zuser zuser = (Zuser) authentication.getPrincipal();
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
+        }
 
 
         return true;
