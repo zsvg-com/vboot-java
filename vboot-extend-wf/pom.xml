@@ -17,5 +17,25 @@
             <artifactId>vboot-core</artifactId>
             <version>${vboot.version}</version>
         </dependency>
+
+        <!--工作流-->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <version>7.1.0.M4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti.dependencies</groupId>
+            <artifactId>activiti-dependencies</artifactId>
+            <version>7.1.0.M4</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 </project>

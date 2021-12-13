@@ -11,10 +11,6 @@ import javax.annotation.PostConstruct;
 public class SdProjMainService extends BaseMainService<SdProjMain> {
 
 
-
-
-
-
     //----------bean注入------------
     @Autowired
     private SdProjMainRepo repo;
