@@ -1,9 +1,9 @@
 package com.zsvg.vboot.module.sys.auth.perm;
 
+import cn.hutool.core.lang.ClassScanner;
 import com.zsvg.vboot.common.mvc.dao.JdbcDao;
 import com.zsvg.vboot.common.mvc.pojo.Zinp;
 import com.zsvg.vboot.common.util.lang.XmapUtil;
-import com.zsvg.vboot.common.util.lang.XscanUtil;
 import com.zsvg.vboot.common.util.web.XuserUtil;
 import com.zsvg.vboot.config.security.pojo.Zuser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,7 +163,8 @@ public class SysAuthPermService {
 
     private List<Zinp> getScanList() {
         List<Zinp> list = new ArrayList<Zinp>();
-        Set<Class<?>> classes = XscanUtil.getClasses("com.zsvg");
+        Set<Class<?>> classes =  ClassScanner.scanPackage("com.zsvg");
+
         for (Class<?> clazz : classes) {
             RequestMapping requestMapping = clazz.getAnnotation(RequestMapping.class);
             if (requestMapping != null) {

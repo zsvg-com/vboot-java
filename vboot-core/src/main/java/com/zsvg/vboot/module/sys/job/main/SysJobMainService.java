@@ -1,6 +1,6 @@
 package com.zsvg.vboot.module.sys.job.main;
 
-import com.zsvg.vboot.common.util.lang.XscanUtil;
+import cn.hutool.core.lang.ClassScanner;
 import com.zsvg.vboot.common.util.lang.XstringUtil;
 import com.zsvg.vboot.module.sys.job.root.IJobGroup;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +54,7 @@ public class SysJobMainService {
     private List<SysJobMain> getScanJobList()
     {
         List<SysJobMain> list = new ArrayList<SysJobMain>();
-        Set<Class<?>> classes = XscanUtil.getClasses("com.zsvg");
+        Set<Class<?>> classes = ClassScanner.scanPackage("com.zsvg");
         for (Class<?> clazz : classes)
         {
             IJobGroup group = clazz.getAnnotation(IJobGroup.class);

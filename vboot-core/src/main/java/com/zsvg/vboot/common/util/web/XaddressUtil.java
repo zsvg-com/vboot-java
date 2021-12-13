@@ -37,10 +37,11 @@ public class XaddressUtil {
                 log.error("获取地理位置异常 {}", ip);
                 return UNKNOWN;
             }
-            Map<String, String> obj = JsonUtils.parseMap(rspStr);
-            String region = obj.get("pro");
-            String city = obj.get("city");
-            return String.format("%s %s", region, city);
+//            Map<String, String> obj = JsonUtils.parseMap(rspStr);
+//            String region = obj.get("pro");
+//            String city = obj.get("city");
+//            return String.format("%s %s", region, city);
+            return String.format("%s %s", "region", "city");
         } catch (Exception e) {
             log.error("获取地理位置异常 {}", ip);
         }

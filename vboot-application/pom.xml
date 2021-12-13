@@ -29,15 +29,12 @@
             </exclusions>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.49</version>
-            <!--            <version>8.0.26</version>-->
+            <!--<version>8.0.26</version>-->
         </dependency>
-
-
 
     </dependencies>
 
@@ -45,16 +42,15 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <!--<mainClass>com.abc.Application</mainClass>-->
+                    <!--<layout>ZIP</layout>-->
+                </configuration>
+
                 <executions>
                     <execution>
                         <goals>
@@ -65,8 +61,5 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 
 </project>
