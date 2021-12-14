@@ -21,6 +21,16 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public abstract class BaseCateService<T extends BaseCateEntity> {
 
+    public List<Ztree> findTreeList(String table,String name) {
+        Sqler sqler = new Sqler(table);
+        sqler.addSelect("t.pid");
+        sqler.addLike("t.name", name);
+        sqler.addOrder("t.ornum");
+        List<Ztree> list = jdbcDao.findTreeList(sqler);
+        return list;
+    }
+
+
     @Transactional(readOnly = true)
     public PageData findPageData(Sqler sqler) {
         sqler.selectCUinfo().addSelect("t.label");
