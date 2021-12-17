@@ -1,19 +1,18 @@
-package com.zsvg.vboot.bi.demo.boy;
+package com.abc.it.db.cate;
 
-import com.zsvg.vboot.common.mvc.service.BaseService;
-import lombok.extern.slf4j.Slf4j;
+import com.zsvg.vboot.common.mvc.service.BaseCateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
 @Service
-@Slf4j
-public class BiDemoBoyService extends BaseService<BiDemoBoy> {
+public class ItDbCateService extends BaseCateService<ItDbCate> {
+
 
     //----------bean注入------------
     @Autowired
-    private BiDemoBoyRepo repo;
+    private ItDbCateRepo repo;
 
     @PostConstruct
     public void initDao() {

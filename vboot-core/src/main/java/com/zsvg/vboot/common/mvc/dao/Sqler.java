@@ -168,7 +168,7 @@ public class Sqler
 
     public Sqler addGtDate(String name, Object value, String dbType)
     {
-        if("ORACLE".equals(dbType)){
+        if("oracle".equals(dbType)){
             if (XstringUtil.isNotBlank(value + ""))
             {
                 if (whereClause.length() == 0)
@@ -180,7 +180,7 @@ public class Sqler
                 }
                 parameters.add(value);
             }
-        }else if("MYSQL".equals(dbType)){
+        }else if("mysql".equals(dbType)){
             if (XstringUtil.isNotBlank(value + ""))
             {
                 if (whereClause.length() == 0)
@@ -199,7 +199,7 @@ public class Sqler
 
     public Sqler addLtDate(String name, Object value, String dbType)
     {
-        if("ORACLE".equals(dbType)) {
+        if("oracle".equals(dbType)) {
             if (XstringUtil.isNotBlank(value + "")) {
                 if (whereClause.length() == 0) {
                     whereClause = " WHERE " + name + "<to_date(?,'yyyy-MM-dd')+1";

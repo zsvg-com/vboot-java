@@ -7,7 +7,7 @@
 
 ### 🍟 概述
 * 基于JAVA实现的快速开发平台。模块化插件式开发，前后端分离，开箱即用。
-* 后台基于SpringBoot框架，数据库访问使用Jpa，自动生成数据库表结构。
+* 后台基于SpringBoot框架，数据库访问同时集成了Jpa与MyBatis-Plus，即可自动生成数据库表结构，又可灵活编写sql。
 * 前端基于Vben-Admin vxe-table框架。
 * 核心模块包括：部门、用户、岗位、群组、角色、菜单、字典、日志、文件管理、定时任务等功能。
 * .NET6实现的同功能项目地址[https://gitee.com/zsvg/vboot-net](https://gitee.com/zsvg/vboot-net) 两个项目会同步开发

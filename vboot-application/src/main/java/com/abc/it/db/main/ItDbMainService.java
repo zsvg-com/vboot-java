@@ -1,22 +1,22 @@
-package com.zsvg.vboot.bi.demo.boy;
+package com.abc.it.db.main;
 
-import com.zsvg.vboot.common.mvc.service.BaseService;
-import lombok.extern.slf4j.Slf4j;
+import com.zsvg.vboot.common.mvc.service.BaseMainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
 @Service
-@Slf4j
-public class BiDemoBoyService extends BaseService<BiDemoBoy> {
+public class ItDbMainService extends BaseMainService<ItDbMain> {
 
     //----------bean注入------------
     @Autowired
-    private BiDemoBoyRepo repo;
+    private ItDbMainRepo repo;
 
     @PostConstruct
     public void initDao() {
         super.setRepo(repo);
     }
 }
+
+

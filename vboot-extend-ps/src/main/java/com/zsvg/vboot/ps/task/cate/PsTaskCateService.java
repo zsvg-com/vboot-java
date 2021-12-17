@@ -1,19 +1,18 @@
-package com.zsvg.vboot.bi.demo.boy;
+package com.zsvg.vboot.ps.task.cate;
 
-import com.zsvg.vboot.common.mvc.service.BaseService;
-import lombok.extern.slf4j.Slf4j;
+import com.zsvg.vboot.common.mvc.service.BaseCateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
 @Service
-@Slf4j
-public class BiDemoBoyService extends BaseService<BiDemoBoy> {
+public class PsTaskCateService extends BaseCateService<PsTaskCate> {
+
 
     //----------bean注入------------
     @Autowired
-    private BiDemoBoyRepo repo;
+    private PsTaskCateRepo repo;
 
     @PostConstruct
     public void initDao() {

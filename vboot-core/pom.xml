@@ -60,6 +60,13 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/ojdbc6.jar</systemPath>
+        </dependency>
         <!--数据库相关结束-->
 
         <!--可用DATA注解自动生成get set toString等，idea需要插件支持-->

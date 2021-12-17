@@ -31,9 +31,9 @@ public class JdbcDao {
             return new PageData(0, new ArrayList<>());
         }
         List<Map<String, Object>> list;
-        if ("MYSQL".equals(DB_TYPE)) {
+        if ("mysql".equals(DB_TYPE)) {
             list = jdbcTemplate.queryForList(sqler.getMysqlPagingSql(), sqler.getParams());
-        }else if ("ORACLE".equals(DB_TYPE)) {
+        }else if ("oracle".equals(DB_TYPE)) {
             list = jdbcTemplate.queryForList(sqler.getOraclePagingLowerCaseSql(), sqler.getParams());
         }  else {
             System.err.println("目前只支持mysql与oracle");

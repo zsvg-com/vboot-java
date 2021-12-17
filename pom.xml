@@ -13,6 +13,7 @@
         <module>vboot-application</module>
         <module>vboot-extend-bi</module>
         <module>vboot-extend-wf</module>
+        <module>vboot-extend-ps</module>
     </modules>
 
     <!--定义属性值-->

@@ -31,7 +31,7 @@ public class GenOrgReceService {
             sqler.addDescOrder("t.uptim");
             sqler.addEqual("t.userid", userid);
             List<GenOrgRece> list;
-            if ("MYSQL".equals(jdbcDao.getDbType())) {
+            if ("mysql".equals(jdbcDao.getDbType())) {
                 list = jdbcDao.getTp().query(sqler.getMysqlPagingSql(), sqler.getParams(), new BeanPropertyRowMapper<>(GenOrgRece.class));
             } else {
                 list = jdbcDao.getTp().query(sqler.getOraclePagingLowerCaseSql(), sqler.getParams(), new BeanPropertyRowMapper<>(GenOrgRece.class));

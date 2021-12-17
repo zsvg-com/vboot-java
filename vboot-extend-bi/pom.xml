@@ -79,13 +79,6 @@
             <systemPath>${pom.basedir}/lib/jface-3.3.0-I20070606-0010.jar</systemPath>
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/lib/ojdbc6.jar</systemPath>
-        </dependency>
 
         <dependency>
             <groupId>org.javassist</groupId>

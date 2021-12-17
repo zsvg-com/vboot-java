@@ -23,7 +23,6 @@ import java.net.UnknownHostException;
 @EnableJpaRepositories({"com.zsvg","com.abc"})
 @Slf4j
 @EnableAsync
-//@MapperScan({"com.abc"})//mybatis-plus扫描mapper
 //@EnableSwagger2
 public class Application {
 

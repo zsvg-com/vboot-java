@@ -55,15 +55,15 @@ public class Zconn {
 
     public boolean isOracle()
     {
-        return "ORACLE".equals(type);
+        return "oracle".equals(type);
     }
     public boolean isMysql()
     {
-        return "MYSQL".equals(type);
+        return "mysql".equals(type);
     }
     public boolean isMysql8()
     {
-        return "MYSQL8".equals(type);
+        return "mysql8".equals(type);
     }
     public boolean isDB2()
     {

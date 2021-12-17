@@ -17,9 +17,24 @@
             <artifactId>vboot-extend-bi</artifactId>
             <version>${vboot.version}</version>
         </dependency>
+
+        <!--集成流程管理-->
         <dependency>
             <groupId>com.zsvg</groupId>
             <artifactId>vboot-extend-wf</artifactId>
+            <version>${vboot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.zsvg</groupId>
+                    <artifactId>vboot-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--集成项目管理-->
+        <dependency>
+            <groupId>com.zsvg</groupId>
+            <artifactId>vboot-extend-ps</artifactId>
             <version>${vboot.version}</version>
             <exclusions>
                 <exclusion>
