@@ -1,6 +1,5 @@
 package com.zsvg.vboot.common.util.file;
 
-import com.zsvg.vboot.common.util.lang.XdateUtil;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -102,58 +101,5 @@ public class XexcelUtil
         return style;
     }
 
-    public static Object getCellValue(Cell cell)
-    {
-        Object back = null;
-        if (null != cell)
-        {
-            switch (cell.getCellType())
-            {
-                case Cell.CELL_TYPE_BLANK:
-                    back = null;
-                    break;
-                case Cell.CELL_TYPE_BOOLEAN:
-                    back = Boolean.toString(cell.getBooleanCellValue());
-                    break;
-                //数值
-                case Cell.CELL_TYPE_NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell))
-                    {
-                        back = XdateUtil.getDate(cell.getDateCellValue());
-                    } else
-                    {
-                        cell.setCellType(Cell.CELL_TYPE_STRING);
-                        String temp = cell.getStringCellValue();
-                        //判断是否包含小数点，如果不含小数点，则以字符串读取，如果含小数点，则转换为Double类型的字符串
-                        if (temp.indexOf(".") > -1)
-                        {
-                            back = String.valueOf(new Double(temp)).trim();
-                        } else
-                        {
-                            back = temp.trim();
-                        }
-                    }
-                    break;
-                case Cell.CELL_TYPE_STRING:
-                    back = cell.getStringCellValue().trim();
-                    if ("".equals(back))
-                    {
-                        back = null;
-                    }
-                    break;
-                case Cell.CELL_TYPE_ERROR:
-                    back = null;
-                    break;
-                case Cell.CELL_TYPE_FORMULA:
-                    cell.setCellType(Cell.CELL_TYPE_STRING);
-                    back = cell.getStringCellValue();
-                    break;
-                default:
-                    back = null;
-                    break;
-            }
-        }
-        return back;
-    }
 
 }

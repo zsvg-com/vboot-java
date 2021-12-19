@@ -1,6 +1,7 @@
 package com.zsvg.vboot.common.mvc.api;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RestResult extends HashMap<String, Object> {
@@ -33,6 +34,10 @@ public class RestResult extends HashMap<String, Object> {
 
     public static RestResult ok(Object data) {
         return RestResult.ok("操作成功", data);
+    }
+
+    public static RestResult empty() {
+        return RestResult.ok("操作成功", new ArrayList<>());
     }
 
     public static RestResult ok(String msg, Object data) {

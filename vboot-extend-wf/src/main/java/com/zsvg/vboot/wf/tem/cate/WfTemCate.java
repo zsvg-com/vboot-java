@@ -1,7 +1,6 @@
 package com.zsvg.vboot.wf.tem.cate;
 
 import com.zsvg.vboot.common.mvc.entity.BaseCateEntity;
-import com.zsvg.vboot.module.sys.auth.menu.SysAuthMenu;
 import lombok.Getter;
 import lombok.Setter;
 

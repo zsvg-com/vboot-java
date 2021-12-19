@@ -1,5 +1,6 @@
 package com.zsvg.vboot.common.mvc.entity;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
 import com.zsvg.vboot.module.sys.org.root.SysOrg;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,7 @@ public class BaseMainEntity {
 
     @ManyToOne
     @JoinColumn(name = "crman", updatable = false)
+    @ExcelIgnore
     protected SysOrg crman;//创建人
 
     @Column(updatable = false)
@@ -43,6 +45,7 @@ public class BaseMainEntity {
 
     @ManyToOne
     @JoinColumn(name = "upman")
+    @ExcelIgnore
     protected SysOrg upman;//更新人
 
     protected Date uptim;//更新时间
