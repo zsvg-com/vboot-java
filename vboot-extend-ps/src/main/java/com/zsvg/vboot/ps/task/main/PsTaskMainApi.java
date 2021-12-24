@@ -20,12 +20,23 @@ public class PsTaskMainApi {
 
     private String table = "ps_task_main";
 
+//    @GetMapping
+//    public RestResult get(String name) {
+//        Sqler sqler = new Sqler(table);
+//        sqler.addLike("t.name", name);
+//        return RestResult.ok(service.findPageData(sqler));
+//    }
+
     @GetMapping
-    public RestResult get(String name) {
+    public RestResult get(String name,String stageid) {
         Sqler sqler = new Sqler(table);
+        sqler.addSelect("t.pid,t.crtim,t.uptim");
         sqler.addLike("t.name", name);
-        return RestResult.ok(service.findPageData(sqler));
+        sqler.addEqual("t.stageid", stageid);
+        sqler.addOrder("t.ornum");
+        return RestResult.ok(service.findTree(sqler));
     }
+
 
     @GetMapping("one/{id}")
     public RestResult getOne(@PathVariable String id) {
@@ -58,8 +69,8 @@ public class PsTaskMainApi {
         List<PsTaskMain> list = ListUtils.newArrayList();
         for (int i = 0; i < 10; i++) {
             PsTaskMain data = new PsTaskMain();
-            data.setString("字符串" + 0);
-            data.setDate(new Date());
+            data.setString2("字符串" + 0);
+            data.setDate2(new Date());
             data.setDoubleData(0.56);
             list.add(data);
         }

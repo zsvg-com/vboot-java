@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public class JdbcDao {
 
-    @Value("${app.db.type}")
+    @Value("${spring.datasource.primary.dbType}")
     private String DB_TYPE;
 
     public PageData findPageData(Sqler sqler) {
@@ -35,8 +35,11 @@ public class JdbcDao {
             list = jdbcTemplate.queryForList(sqler.getMysqlPagingSql(), sqler.getParams());
         }else if ("oracle".equals(DB_TYPE)) {
             list = jdbcTemplate.queryForList(sqler.getOraclePagingLowerCaseSql(), sqler.getParams());
+        }else if ("sqlserver".equals(DB_TYPE)) {
+            System.out.println(sqler.getSqlserverPagingSql());
+            list = jdbcTemplate.queryForList(sqler.getSqlserverPagingSql(), sqler.getParams());
         }  else {
-            System.err.println("目前只支持mysql与oracle");
+            System.err.println("目前只支持mysql,oracle与sqlserver");
             list = new ArrayList<>();
         }
         return new PageData(count, list);

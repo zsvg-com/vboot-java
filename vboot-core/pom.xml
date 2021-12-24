@@ -67,6 +67,11 @@
             <scope>system</scope>
             <systemPath>${pom.basedir}/lib/ojdbc6.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
         <!--数据库相关结束-->
 
         <!--可用DATA注解自动生成get set toString等，idea需要插件支持-->

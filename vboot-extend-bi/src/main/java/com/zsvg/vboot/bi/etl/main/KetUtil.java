@@ -35,11 +35,14 @@ public class KetUtil {
         databaseMeta.setName("ket");
         databaseMeta.setDatabaseType("MYSQL");
         databaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
-        databaseMeta.setHostname("localhost");
-        databaseMeta.setDBName("vboot-java");
+
+
         databaseMeta.setDBPort("3306");
         databaseMeta.setUsername("root");
+        databaseMeta.setHostname("localhost");
+        databaseMeta.setDBName("vboot-java");
         databaseMeta.setPassword("123456");
+
         databaseMeta.getAttributes().setProperty("EXTRA_OPTION_MYSQL.useSSL", "false");
         transMeta.addDatabase(databaseMeta);
         VariableSpace space = new Variables();

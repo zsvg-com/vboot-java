@@ -20,4 +20,6 @@ public class PsProjMain extends BaseMainEntity {
     private PsProjCate cate;
 
     private String notes;
+
+    private Integer ornum;
 }

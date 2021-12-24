@@ -18,7 +18,6 @@ import java.net.UnknownHostException;
 
 @EnableCaching
 @SpringBootApplication
-@EntityScan({"com.zsvg","com.abc"})
 @ComponentScan({"com.zsvg","com.abc"})
 @EnableJpaRepositories({"com.zsvg","com.abc"})
 @Slf4j

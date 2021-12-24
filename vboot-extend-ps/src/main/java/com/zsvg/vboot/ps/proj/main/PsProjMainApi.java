@@ -1,6 +1,7 @@
 package com.zsvg.vboot.ps.proj.main;
 
 import com.zsvg.vboot.common.mvc.api.RestResult;
+import com.zsvg.vboot.common.mvc.dao.JdbcDao;
 import com.zsvg.vboot.common.mvc.dao.Sqler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,17 @@ public class PsProjMainApi {
         return RestResult.ok(main);
     }
 
+    @GetMapping("list")
+    public RestResult getList(String name) {
+        Sqler sqler = new Sqler("id value,name label",table);
+        return RestResult.ok(jdbcDao.findMapList(sqler));
+    }
+
+    @GetMapping("tree")
+    public RestResult getTree(String name) {
+        return RestResult.ok(service.findTree(name));
+    }
+
     @PostMapping
     public RestResult post(@RequestBody PsProjMain main) {
         return RestResult.ok(service.insert(main));
@@ -41,5 +53,9 @@ public class PsProjMainApi {
 
     @Autowired
     private PsProjMainService service;
+
+
+    @Autowired
+    private JdbcDao jdbcDao;
 
 }

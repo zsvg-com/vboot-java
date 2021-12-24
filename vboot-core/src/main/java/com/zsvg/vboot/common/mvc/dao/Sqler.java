@@ -340,6 +340,18 @@ public class Sqler
         return selectClause + fromClause + whereClause+groupClause + orderClause + " limit " + fromIndex + "," + pasiz;
     }
 
+    public String getSqlserverPagingSql()
+    {
+        int rownum = panum * pasiz;
+        int rn = (panum - 1) * pasiz;
+        if("".equals(orderClause)){
+            orderClause = "order by t.id";
+        }
+        return " SELECT * FROM ("+selectClause+", ROW_NUMBER() OVER("+orderClause+") AS RowId " + fromClause + whereClause+groupClause  + ") PPGG  WHERE PPGG.RowId between " + rn + " and "+ rownum;
+//      return " SELECT * FROM (SELECT PPGG.*, ROWNUM RN FROM (" + changeSelectClause.toString() + fromClause + whereClause+groupClause + orderClause + ") PPGG  WHERE ROWNUM <= " + rownum + ")  WHERE RN > " + rn;
+    }
+
+
 
     public String getOraclePagingSql()
     {

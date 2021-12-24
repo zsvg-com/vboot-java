@@ -32,8 +32,8 @@ public class BiEtlMainApi {
 
     @PostMapping("once/{id}")
     public RestResult edit_startOnce(@PathVariable String id) throws Exception {
-        BiEtlMain main = service.findOne(id);
-        KetUtil.runTran(ATT_PATH + "/" + main.getZpath(), null, true);
+        BiEtlMain kettle = service.findOne(id);
+        KetUtil.runTran(ATT_PATH + "/" + kettle.getZpath(), null, true);
         return RestResult.ok();
     }
 
