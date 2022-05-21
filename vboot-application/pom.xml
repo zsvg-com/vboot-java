@@ -5,7 +5,7 @@
     <parent>
         <artifactId>vboot</artifactId>
         <groupId>com.zsvg</groupId>
-        <version>0.2</version>
+        <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,37 +18,17 @@
             <version>${vboot.version}</version>
         </dependency>
 
-        <!--集成流程管理-->
-        <dependency>
-            <groupId>com.zsvg</groupId>
-            <artifactId>vboot-extend-wf</artifactId>
-            <version>${vboot.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.zsvg</groupId>
-                    <artifactId>vboot-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!--集成项目管理-->
-        <dependency>
-            <groupId>com.zsvg</groupId>
-            <artifactId>vboot-extend-ps</artifactId>
-            <version>${vboot.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.zsvg</groupId>
-                    <artifactId>vboot-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.49</version>
             <!--<version>8.0.26</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
         </dependency>
 
         <dependency>

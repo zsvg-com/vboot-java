@@ -1,11 +1,10 @@
 package com.abc;
 
-import com.zsvg.vboot.common.util.lang.XstringUtil;
-import com.zsvg.vboot.common.util.web.XspringUtil;
+import vboot.common.util.lang.XstringUtil;
+import vboot.common.util.web.XspringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,8 +17,8 @@ import java.net.UnknownHostException;
 
 @EnableCaching
 @SpringBootApplication
-@ComponentScan({"com.zsvg","com.abc"})
-@EnableJpaRepositories({"com.zsvg","com.abc"})
+@ComponentScan({"vboot","com.abc"})
+@EnableJpaRepositories({"vboot","com.abc"})
 @Slf4j
 @EnableAsync
 //@EnableSwagger2
@@ -47,8 +46,8 @@ public class Application {
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application  is running! Access URLs:\n\t" +
-                "Local访问网址: \t\thttp://localhost:" + port + path +"/vben.html"+ "\n\t" +
-                "External访问网址: \thttp://" + ip + ":" + port + path +"/vben.html"+ "\n\t");
+                "Local访问网址: \t\thttp://localhost:" + port + path +"/vue.html"+ "\n\t" +
+                "External访问网址: \thttp://" + ip + ":" + port + path +"/vue.html"+ "\n\t");
 
     }
 
